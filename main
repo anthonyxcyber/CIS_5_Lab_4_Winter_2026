@@ -1,0 +1,83 @@
+https://drive.google.com/file/d/1T4f_tolxc2MKEz1LsnhxCJQagzzjyHft/view?usp=sharing 
+
+code:
+
+#include <iostream>
+using namespace std;
+
+// const pointer/array param (read only)
+int calculateSum(const int arr[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum = sum + arr[i];
+    }
+    return sum;
+}
+
+// pass by value (sum and size are copies)
+double getAverage(int sum, int size) {
+    return (double)sum / size;
+}
+
+// pointer/array param (changes original array)
+// default bonus is 5
+void addBonus(int arr[], int size, int bonus = 5) {
+    for (int i = 0; i < size; i++) {
+        arr[i] = arr[i] + bonus;
+    }
+}
+
+// pointer (read only)
+int findHighest(const int* arr, int size) {
+    int high = arr[0];
+    for (int i = 1; i < size; i++) {
+        if (arr[i] > high) {
+            high = arr[i];
+        }
+    }
+    return high;
+}
+
+// const pointer/array param (read only), passed if >= 70
+int countPassed(const int arr[], int size) {
+    int passed = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] >= 70) {
+            passed++;
+        }
+    }
+    return passed;
+}
+
+int main() {
+    const int SIZE = 5;
+    int scores[SIZE] = { 65, 82, 90, 45, 78 };
+
+    cout << "Original scores: ";
+    for (int i = 0; i < SIZE; i++) {
+        cout << scores[i] << " ";
+    }
+    cout << endl;
+
+    int sum = calculateSum(scores, SIZE);
+    double avg = getAverage(sum, SIZE);
+
+    cout << "Sum: " << sum << endl;
+    cout << "Average: " << avg << endl;
+
+    addBonus(scores, SIZE); // uses default bonus = 5
+
+    cout << "Scores after bonus: ";
+    for (int i = 0; i < SIZE; i++) {
+        cout << scores[i] << " ";
+    }
+    cout << endl;
+
+    int high = findHighest(scores, SIZE);
+    int passed = countPassed(scores, SIZE);
+
+    cout << "Highest score: " << high << endl;
+    cout << "Number passed: " << passed << endl;
+
+    return 0;
+}
